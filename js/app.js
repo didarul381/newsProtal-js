@@ -37,7 +37,7 @@ const loadonDtails = async(id,cName)=>{
     const url=`https://openapi.programming-hero.com/api/news/category/${id}`
     const res=await fetch(url)
     const data=await res.json()
-   // console.log(url);
+    // console.log(url);
     displayNews(data.data,cName);
    
 }
