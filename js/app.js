@@ -103,7 +103,7 @@ const displayNews=(catagorys,cName)=>{
     <h3>${count} items found for catagory ${cName}</h3>
    `
   }
-
+  
 
 const loadNewsDtails = async(id)=>{
   const url=`https://openapi.programming-hero.com/api/news/${id}`
