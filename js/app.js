@@ -11,7 +11,7 @@ const loadCatagory= async()=>{
     }
     
 }
-
+ 
 const showCatagory = (data)=>{
   // console.log(data);
   // const data=await loadCatagory();
