@@ -42,7 +42,7 @@ const loadonDtails = async(id,cName)=>{
    
 }
 const displayNews=(catagorys,cName)=>{
-    console.log(catagorys);
+    //console.log(catagorys);
     let count=0
      catagorys.sort(({total_view:a}, {total_view:b}) => b-a);
     
