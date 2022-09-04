@@ -33,12 +33,16 @@ const showCatagory = (data)=>{
 //showCatagory()
 const loadonDtails = async(id,cName)=>{
     //console.log(id);
-    //const url=` https://openapi.programming-hero.com/api/phone/${id}`
+   
     const url=`https://openapi.programming-hero.com/api/news/category/${id}`
+    try{
     const res=await fetch(url)
     const data=await res.json()
     // console.log(url);
     displayNews(data.data,cName);
+    }catch(error){
+      console.log(error);
+    }
    
 }
 const displayNews=(catagorys,cName)=>{
@@ -53,27 +57,28 @@ const displayNews=(catagorys,cName)=>{
   //spiner start
    spinner.classList.remove('d-none')
    //for(const catagory of catagorys){
+    //style="max-width: 800px mx-auto;"
    catagorys.forEach(catagory=>{
    
-  const div =document.createElement('div');
+    const div =document.createElement('div');
   
     div.innerHTML=`
-    <div class="card mt-3" style="max-width: 800px mx-auto;">
+    <div class="card mt-3" >
             <div class="row g-0">
-              <div class="col-md-4 ">
-                <img src=${catagory.thumbnail_url} class=" img-fluid rounded h-100 "
+              <div class="col-md-4">
+                <img src="${catagory.thumbnail_url}" class=" h-100 img-fluid rounded d-sm-block w-100 "
                 
-                " alt="...">
+               alt="...">
               </div>
-              <div class="col-md-8 ">
+              <div class="col-md-8 mt-4  pt-4 ">
                 <div class="card-body mt-4 pt-4">
                 <h4 class="card-text">${catagory.title}.</h4>
-                  <p class="card-text">${catagory.details.slice(0,300)}......</p>
+                  <p class="card-text">${catagory.details.slice(0,350)}......</p>
                   <p class="card-text me-4 mt-4"> <span><img src=${catagory.author.img} class="img-fluid  rounded-circle m-2"
                   height="30" width="40" alt="...">${catagory.author.name?catagory.author.name:'N/A'}.</span>
-                   <span class=" ms-4 ps-4 mt-4">
+                   <span class=" ps-4 mt-4">
                    <img src=https://as2.ftcdn.net/v2/jpg/01/32/94/59/1000_F_132945953_OocCtBw9bTS7gz9C0jz0BAPDQktREyrS.jpg class="img-fluid rounded-start
-                  "height="30" width="40" alt="..."><span >${catagory.total_view?catagory.total_view:0}
+                  "height="40" width="40" alt="..."><span >${catagory.total_view?catagory.total_view:0}
                    </span class="  mt-4">
                    <span onclick="loadNewsDtails('${catagory._id}')"
                    data-bs-toggle="modal" data-bs-target="#exampleModal" class=" ms-4 ps-4">
@@ -86,7 +91,7 @@ const displayNews=(catagorys,cName)=>{
               </div>
             </div>
           </div>
-        
+         
     
     `
    count++;
@@ -106,11 +111,16 @@ const displayNews=(catagorys,cName)=>{
   
 
 const loadNewsDtails = async(id)=>{
+ 
   const url=`https://openapi.programming-hero.com/api/news/${id}`
+  try{
   const res=await fetch(url)
   const data=await res.json()
   
   displayNewsDtails(data.data[0]);
+  }catch(error){
+    console.log(error);
+  }
  
 }
 const displayNewsDtails =(news)=>{
@@ -142,5 +152,7 @@ const displayNewsDtails =(news)=>{
   `
 
 }
-loadonDtails('01','Breaking News')
-loadCatagory();
+
+
+  loadonDtails('01','Breaking News')
+  loadCatagory();
